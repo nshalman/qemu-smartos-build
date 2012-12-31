@@ -1,0 +1,28 @@
+redo-ifchange config.sh prep spice-built usbredir-built qemu.source
+exec 2>&1
+. ./config.sh
+cd qemu.source
+
+SMARTDC="/smartdc2"
+KERNEL_SOURCE=/illumos
+CTFBINDIR=$KERNEL_SOURCE/usr/src/tools/proto/root_i386-nd/opt/onbld/bin/i386
+export PATH=$PATH:$CTFBINDIR
+./configure \
+    --prefix=${SMARTDC} \
+    --disable-bluez \
+    --disable-brlapi \
+    --disable-curl \
+    --disable-sdl \
+    --disable-curses \
+    --disable-vnc-sasl \
+    --disable-vnc-tls \
+    --enable-debug \
+    --enable-kvm \
+    --enable-vnc-png \
+    --audio-drv-list= \
+    --enable-vnc-jpeg \
+    --enable-trace-backend=dtrace \
+    --enable-spice \
+    --target-list="x86_64-softmmu" \
+    --cpu=x86_64
+gmake V=1 all

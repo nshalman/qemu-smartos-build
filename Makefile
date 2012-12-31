@@ -1,0 +1,5 @@
+default:
+	@./do default
+
+%:
+	@./do $@
