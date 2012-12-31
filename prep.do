@@ -1,6 +1,6 @@
 exec 2>&1
 # need git to get code
-pkgin -y in scmgit
+pkgin -y in scmgit bsdtar
 
 # build tools
 pkgin -y in python27 gcc-compiler gmake libtool-base automake pkg-config
@@ -26,3 +26,5 @@ if [[ ! -e ${STAMPS}/pyparsing ]]; then
 	pip install pyparsing && \
 	touch ${STAMPS}/pyparsing || exit 1
 fi
+
+bsdtar -C / -xf onbld.tar.gz
