@@ -1,0 +1,25 @@
+{
+  "name": "spice",
+  "version": "VERSION",
+  "type": "zone-dataset",
+  "description": "Spice enabled QEMU",
+  "published_at": "DATE",
+  "os": "QEMU",
+  "files": [
+    {
+      "path": "NAME-VERSION.zfs.bz2",
+      "sha1": "SHA",
+      "size": SIZE
+    }
+  ],
+  "requirements": {},
+  "uuid": "UUID",
+  "creator_uuid": "d47a42fa-cac5-11e1-957f-0f9d2e4286c7",
+  "vendor_uuid": "d47a42fa-cac5-11e1-957f-0f9d2e4286c7",
+  "creator_name": "elys",
+  "platform_type": "smartos",
+  "cloud_name": "elys",
+  "urn": "elys:elys:spice:VERSION",
+  "created_at": "DATE",
+  "updated_at": "DATE"
+}

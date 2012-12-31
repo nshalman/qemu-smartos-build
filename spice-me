@@ -1,0 +1,12 @@
+#!/bin/bash
+
+SERVER=http://www.shalman.org/spice
+
+wget $SERVER/build-spiced-qemu.bash
+wget $SERVER/build-dataset.bash
+wget $SERVER/manifest.json.template
+
+wget $SERVER/onbld.tar.gz
+tar -C / -xzvf onbld.tar.gz
+
+bash build-spiced-qemu.bash
