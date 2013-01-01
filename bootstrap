@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# need git to get code
-pkgin -y in scmgit
-
-git clone git://github.com/nshalman/qemu-smartos-build.git
