@@ -1,6 +1,7 @@
-#!/bin/bash -x
+#!/bin/bash
 redo-ifchange config.sh qemu-built
 exec 2>&1
+set -o xtrace
 . ./config.sh
 
 PARENT=$(zfs list -H -o name | grep 'data$')
@@ -21,7 +22,7 @@ mkdir ${ZONEDIR}
 chmod 700 ${ZONEDIR}
 mkdir ${ZONEDIR}/root
 
-cd qemu.source && gmake DESTDIR="${ZONEDIR}/root" install || exit 1
+( cd qemu.source && gmake DESTDIR="${ZONEDIR}/root" install ; ) || exit 1
 
 mkdir -p ${ZONEDIR}/root/${SMARTDC}/lib
 
@@ -38,6 +39,7 @@ for LIB in $LIBS; do
   fi
 done
 
+pwd >&2
 cp startvm.zone ${ZONEDIR}/root/ || exit 1
 chmod +x ${ZONEDIR}/root/startvm.zone
 cp usbredir.cfg ${ZONEDIR}/root/${SMARTDC}/etc/qemu/ || exit 1
@@ -45,9 +47,9 @@ cp usbredir.cfg ${ZONEDIR}/root/${SMARTDC}/etc/qemu/ || exit 1
 zfs destroy ${FILESYSTEM}@final
 zfs snapshot ${FILESYSTEM}@final
 VERSION=$(date -u "+%Y%m%dT%H%M%SZ")
-FILENAME=spice-$VERSION.zfs.bz2
-mkdir -p ${3}/${UUID}
-zfs send ${FILESYSTEM}@final | pbzip2 > ${3}/${UUID}/${FILENAME}
+mkdir -p ${UUID}
+FILENAME=${UUID}/spice-$VERSION.zfs.bz2
+zfs send ${FILESYSTEM}@final | pbzip2 > ${FILENAME}
 
 DATE=$(date +%FT%H:%M:%S.0Z)
 SIZE=$(ls -l ${FILENAME}  | awk '{ print $5 }')
@@ -59,4 +61,4 @@ s|NAME|spice|;
 s|DATE|${DATE}|;
 s|UUID|${UUID}|;
 s|SIZE|$SIZE|;
-s|SHA|${SHA}|;" manifest.json.template > ${3}/${UUID}/${FILENAME}.manifest
+s|SHA|${SHA}|;" manifest.json.template > ${FILENAME}.manifest
