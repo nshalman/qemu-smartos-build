@@ -19,7 +19,7 @@
   "creator_name": "elys",
   "platform_type": "smartos",
   "cloud_name": "elys",
-  "urn": "elys:elys:spice:VERSION",
+  "urn": "elys:elys:NAME:VERSION",
   "created_at": "DATE",
   "updated_at": "DATE"
 }
