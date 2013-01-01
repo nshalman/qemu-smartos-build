@@ -10,3 +10,4 @@ export MY_LIBS=${MY_PREFIX}/lib
 export MY_INCS=${MY_PREFIX}/include
 export LDFLAGS=-m64
 export CFLAGS=-m64
+export SMARTDC=/smartdc2
