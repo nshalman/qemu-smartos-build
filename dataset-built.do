@@ -49,7 +49,7 @@ zfs destroy ${FILESYSTEM}@final
 zfs snapshot ${FILESYSTEM}@final
 VERSION=$(date -u "+%Y%m%dT%H%M%SZ")
 mkdir -p ${UUID}
-FILENAME=${UUID}/spice-$VERSION.zfs.bz2
+FILENAME=${UUID}/${spice}-$VERSION.zfs.bz2
 zfs send ${FILESYSTEM}@final | pbzip2 > ${FILENAME}
 
 DATE=$(date +%FT%H:%M:%S.0Z)
@@ -58,7 +58,7 @@ SHA=$(sha1sum ${FILENAME} | awk '{ print $1 }')
 
 sed "
 s|VERSION|$VERSION|;
-s|NAME|spice|;
+s|NAME|${spice}|;
 s|DATE|${DATE}|;
 s|UUID|${UUID}|;
 s|SIZE|$SIZE|;

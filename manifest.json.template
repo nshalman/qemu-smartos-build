@@ -1,8 +1,8 @@
 {
-  "name": "spice",
+  "name": "NAME",
   "version": "VERSION",
   "type": "zone-dataset",
-  "description": "Spice enabled QEMU",
+  "description": "Spice enabled QEMU (NAME)",
   "published_at": "DATE",
   "os": "QEMU",
   "files": [
