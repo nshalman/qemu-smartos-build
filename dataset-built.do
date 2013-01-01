@@ -1,5 +1,6 @@
 #!/bin/bash
 redo-ifchange config.sh qemu-built
+exec 3>&2
 exec 2>&1
 set -o xtrace
 . ./config.sh
@@ -62,3 +63,5 @@ s|DATE|${DATE}|;
 s|UUID|${UUID}|;
 s|SIZE|$SIZE|;
 s|SHA|${SHA}|;" manifest.json.template > ${FILENAME}.manifest
+
+echo "Dataset has been placed in $(pwd)/${UUID}" >&3
