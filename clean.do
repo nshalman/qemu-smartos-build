@@ -1,1 +1,1 @@
-rm -rf *-built *.tmp *.did downloads/*.did
+rm -rf *-built *.tmp* *.did downloads/*.did

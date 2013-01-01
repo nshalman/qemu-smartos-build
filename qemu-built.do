@@ -1,12 +1,16 @@
+#!/bin/bash
 redo-ifchange config.sh prep spice-built usbredir-built qemu.source
 exec 2>&1
 . ./config.sh
 cd qemu.source
 
-SMARTDC="/smartdc2"
 KERNEL_SOURCE=/illumos
 CTFBINDIR=$KERNEL_SOURCE/usr/src/tools/proto/root_i386-nd/opt/onbld/bin/i386
 export PATH=$PATH:$CTFBINDIR
+
+# tell QEMU to use my cflags
+export QEMU_CFLAGS=${CFLAGS}
+
 ./configure \
     --prefix=${SMARTDC} \
     --disable-bluez \
@@ -24,5 +28,5 @@ export PATH=$PATH:$CTFBINDIR
     --enable-trace-backend=dtrace \
     --enable-spice \
     --target-list="x86_64-softmmu" \
-    --cpu=x86_64
+    --cpu=x86_64 && \
 gmake V=1 all
