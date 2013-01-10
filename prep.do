@@ -3,7 +3,7 @@ exec 2>&1
 pkgin -y in scmgit bsdtar
 
 # build tools
-pkgin -y in python27 gcc-compiler gcc47 gmake libtool-base automake pkg-config
+pkgin -y in python27 gcc-compiler gcc47 gmake libtool-base automake pkg-config py27-setuptools
 
 # dependencies
 pkgin -y in pixman jpeg libogg glib2 png
