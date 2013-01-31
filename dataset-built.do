@@ -1,7 +1,6 @@
-#!/bin/bash
+#!/bin/bash -x
 redo-ifchange config.sh qemu-built
-exec 3>&2
-exec 2>&1
+exec >&2
 set -o xtrace
 . ./config.sh
 
@@ -47,9 +46,8 @@ cp usbredir.cfg ${ZONEDIR}/root/${SMARTDC}/etc/qemu/ || exit 1
 
 zfs destroy ${FILESYSTEM}@final
 zfs snapshot ${FILESYSTEM}@final
-VERSION=$(date -u "+%Y%m%dT%H%M%SZ")
 mkdir -p ${UUID}
-FILENAME=${UUID}/${spice}-$VERSION.zfs.bz2
+FILENAME=${UUID}/${QEMU_VERSION}-$VERSION.zfs.bz2
 zfs send ${FILESYSTEM}@final | pbzip2 > ${FILENAME}
 
 DATE=$(date +%FT%H:%M:%S.0Z)
@@ -58,10 +56,10 @@ SHA=$(sha1sum ${FILENAME} | awk '{ print $1 }')
 
 sed "
 s|VERSION|$VERSION|;
-s|NAME|${spice}|;
+s|NAME|${QEMU_VERSION}|;
 s|DATE|${DATE}|;
 s|UUID|${UUID}|;
 s|SIZE|$SIZE|;
 s|SHA|${SHA}|;" manifest.json.template > ${FILENAME}.manifest
 
-echo "Dataset has been placed in $(pwd)/${UUID}" >&3
+echo "Dataset has been placed in $(pwd)/${UUID}"
