@@ -1,30 +1,23 @@
-exec 2>&1
+#!/bin/bash -x
+exec 1>&2
+
+cat > /opt/local/etc/pkgin/repositories.conf <<EOF
+http://pkgsrc.smartos.org/packages/SmartOS/2012Q4-multiarch/All
+http://www.shalman.org/spice/2012Q4-multiarch-spice
+http://www.shalman.org/spice/2012Q4-multiarch-onbld
+EOF
+
+rm -rf /var/db/pkgin/
+pkgin -y up
+
 # need git to get code
 pkgin -y in scmgit bsdtar
 
 # build tools
-pkgin -y in python27 gcc-compiler gcc47 gmake libtool-base automake pkg-config
+pkgin -y in gcc47 gmake libtool-base automake pkg-config
+
+# build tools I provide
+pkgin -y in onbld
 
 # dependencies
-pkgin -y in pixman jpeg libogg glib2 png
-
-# We need pyparsing to fully build the source tree
-STAMPS=/root/stamps
-mkdir -p ${STAMPS}
-
-if [[ ! -e ${STAMPS}/distribute ]]; then
-  curl http://python-distribute.org/distribute_setup.py | python && \
-	touch ${STAMPS}/distribute || exit 1
-fi
-
-if [[ ! -e ${STAMPS}/pip ]]; then
-	curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python && \
-	touch ${STAMPS}/pip || exit 1
-fi
-
-if [[ ! -e ${STAMPS}/pyparsing ]]; then
-	pip install pyparsing && \
-	touch ${STAMPS}/pyparsing || exit 1
-fi
-
-bsdtar -C / -xf onbld.tar.gz
+pkgin -y in png spice-protocol libspice usbredir

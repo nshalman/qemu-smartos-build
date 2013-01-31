@@ -1,6 +1,6 @@
-#!/bin/bash
-redo-ifchange config.sh prep spice-built usbredir-built qemu.source
-exec 2>&1
+#!/bin/bash -x
+redo-ifchange config.sh prep qemu.source
+exec 1>&2
 . ./config.sh
 cd qemu.source
 
