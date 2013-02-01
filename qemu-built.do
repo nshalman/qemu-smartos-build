@@ -20,6 +20,7 @@ export QEMU_CFLAGS=${CFLAGS}
     --disable-curses \
     --disable-vnc-sasl \
     --disable-vnc-tls \
+    --disable-kvm-device-assignment \
     --enable-debug \
     --enable-kvm \
     --enable-vnc-png \
