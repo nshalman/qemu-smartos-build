@@ -10,4 +10,4 @@ export CPPFLAGS="-I${MY_INCS}"
 export SMARTDC=/smartdc2
 
 export QEMU_VERSION=qemu-kvm-1.1.2
-export VERSION=1.0
+export VERSION=1.0.1

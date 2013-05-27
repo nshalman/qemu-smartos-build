@@ -2,7 +2,7 @@
   "name": "NAME",
   "version": "VERSION",
   "type": "zone-dataset",
-  "description": "Spice enabled QEMU (NAME)",
+  "description": "Spice enabled QEMU (NAME) (spice-SPICEVER)",
   "published_at": "DATE",
   "os": "QEMU",
   "files": [

@@ -53,9 +53,11 @@ zfs send ${FILESYSTEM}@final | pbzip2 > ${FILENAME}
 DATE=$(date +%FT%H:%M:%S.0Z)
 SIZE=$(ls -l ${FILENAME}  | awk '{ print $5 }')
 SHA=$(sha1sum ${FILENAME} | awk '{ print $1 }')
+SPICEVER=$(pkgin ls | grep libspice | sed 's|.*-\([0-9.]*\).*|\1|')
 
 sed "
 s|VERSION|$VERSION|;
+s|SPICEVER|$SPICEVER|;
 s|NAME|${QEMU_VERSION}|;
 s|DATE|${DATE}|;
 s|UUID|${UUID}|;
