@@ -3,7 +3,6 @@
 # This is a vm start script that processes the standard arguments from vmadmd
 # and translates them to work with the new qemu.
 #
-export LD_LIBRARY_PATH=/lib/64:/usr/lib/64:/smartdc2/lib
 
 #
 # We need to build the list of arguments... we need to inject 
@@ -13,7 +12,7 @@ export LD_LIBRARY_PATH=/lib/64:/usr/lib/64:/smartdc2/lib
 ARGV[0]="-machine"
 ARGV[1]="pc,accel=kvm,kernel_irqchip=on"
 ARGV[2]="-readconfig"
-ARGV[3]="/smartdc2/etc/qemu/usbredir.cfg"
+ARGV[3]="/opt/local/etc/qemu/usbredir.cfg"
 argc=4
 for ARG in "$@"; do
 	echo "ARG=$ARG"
@@ -25,4 +24,4 @@ done
 
 echo "FINAL ARGS: " ${ARGV[@]}
 
-exec /smartdc2/bin/qemu-system-x86_64 "${ARGV[@]}"
+exec /opt/local/bin/qemu-system-x86_64 "${ARGV[@]}"
