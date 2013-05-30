@@ -1,5 +1,5 @@
 #!/bin/bash -x
-redo-ifchange config.sh qemu-built
+redo-ifchange config.sh qemu-built || exit 1
 exec >&2
 set -o xtrace
 . ./config.sh
@@ -24,8 +24,6 @@ mkdir ${ZONEDIR}/root
 
 ( cd qemu.source && gmake DESTDIR="${ZONEDIR}/root" install ; ) || exit 1
 
-mkdir -p ${ZONEDIR}/root/${SMARTDC}/lib
-
 #
 # Now figure out the libs we need to copy...
 #
@@ -35,7 +33,7 @@ for LIB in $LIBS; do
   ISOPT=$(echo "${LIB}" | egrep -e "^/opt/")
   if test -n "$ISOPT"; then
     echo "Copying ${LIB}"
-    cp ${LIB} ${ZONEDIR}/root/${SMARTDC}/lib || exit 1
+    rsync -LR ${LIB} ${ZONEDIR}/root/ || exit 1
   fi
 done
 
