@@ -11,7 +11,7 @@ export PATH=$PATH:$CTFBINDIR
 # tell QEMU to use my cflags
 export QEMU_CFLAGS=${CFLAGS}
 
-./configure \
+bash configure \
     --prefix=${PREFIX} \
     --disable-bluez \
     --disable-brlapi \
