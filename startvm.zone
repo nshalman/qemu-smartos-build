@@ -13,7 +13,17 @@ ARGV[0]="-machine"
 ARGV[1]="pc,accel=kvm,kernel_irqchip=on"
 ARGV[2]="-readconfig"
 ARGV[3]="/opt/local/etc/qemu/usbredir.cfg"
-argc=4
+ARGV[4]="-global"
+ARGV[5]="qxl.revision=4"
+ARGV[6]="-global"
+ARGV[7]="qxl-vga.revision=4"
+ARGV[8]="-global"
+ARGV[9]="qxl-vga.vgamem_mb=32"
+ARGV[10]="-global"
+ARGV[11]="qxl-vga.ram_size_mb=128"
+ARGV[12]="-global"
+ARGV[13]="qxl-vga.vram_size_mb=128"
+argc=14
 for ARG in "$@"; do
 	echo "ARG=$ARG"
 	ARG=${ARG%,boot=on}
