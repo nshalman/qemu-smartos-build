@@ -21,7 +21,7 @@ pkg_info libspice &>/dev/null || pkgin -y in libspice
 # XXX downgrade to spice 0.12.2
 pkg_info libspice | grep -q libspice-0.12.2 || \
 	{ \
-	pkgin -y rm libpsice && \
+	pkgin -y rm libspice && \
 	pkg_add <(curl http://pkgsrc.joyent.com/packages/SmartOS/2013Q1/x86_64/All/libspice-0.12.2.tgz) && \
 	echo "Manually downgraded to libspice-0.12.2 due to known issue with later versions" ; \
 	}
