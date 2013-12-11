@@ -12,7 +12,7 @@ export PATH=$PATH:$CTFBINDIR
 export QEMU_CFLAGS=${CFLAGS}
 
 ./configure \
-    --prefix=${SMARTDC} \
+    --prefix=${PREFIX} \
     --disable-bluez \
     --disable-brlapi \
     --disable-curl \

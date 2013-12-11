@@ -40,7 +40,7 @@ done
 pwd >&2
 cp startvm.zone ${ZONEDIR}/root/ || exit 1
 chmod +x ${ZONEDIR}/root/startvm.zone
-cp usbredir.cfg ${ZONEDIR}/root/${SMARTDC}/etc/qemu/ || exit 1
+cp usbredir.cfg ${ZONEDIR}/root/${PREFIX}/etc/qemu/ || exit 1
 
 zfs destroy ${FILESYSTEM}@final
 zfs snapshot ${FILESYSTEM}@final

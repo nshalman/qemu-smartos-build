@@ -7,7 +7,7 @@ export LDFLAGS="-m64 -L${MY_LIBS}"
 export CFLAGS="-m64 -I${MY_INCS}"
 export CXXLAGS=${CFLAGS}
 export CPPFLAGS="-I${MY_INCS}"
-export SMARTDC=/opt/local
+export PREFIX=/opt/local
 
 export QEMU_VERSION=qemu-kvm-1.1.2
 export VERSION=1.0.1
