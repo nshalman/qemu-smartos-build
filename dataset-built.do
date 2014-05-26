@@ -60,6 +60,6 @@ s|NAME|${QEMU_VERSION}|;
 s|DATE|${DATE}|;
 s|UUID|${UUID}|;
 s|SIZE|$SIZE|;
-s|SHA|${SHA}|;" manifest.json.template > ${FILENAME}.manifest
+s|SHA|${SHA}|;" manifest.json.template > ${UUID}/manifest.json
 
 echo "Dataset has been placed in $(pwd)/${UUID}"
